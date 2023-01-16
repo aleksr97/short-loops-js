@@ -10,7 +10,7 @@ export function filterLongNames(names) {
     return longNames;
 }
 
-export function inventarItemNames(items) {
+export function inventoryItemNames(items) {
     const names = [];
 
     for (const item of items) {
@@ -20,12 +20,12 @@ export function inventarItemNames(items) {
     return names;
 }
 
-export function orderItemNames(inventar, orderItemIds) {
+export function orderItemNames(inventory, orderItemIds) {
     const orderedItems = [];
 
     for (const itemId of orderItemIds) {
-        if (inventar[itemId].amount > 0) {
-            orderedItems.push(inventar[itemId].name);
+        if (inventory[itemId].amount > 0) {
+            orderedItems.push(inventory[itemId].name);
         }
     }
 
