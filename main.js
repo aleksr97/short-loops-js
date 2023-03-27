@@ -1,4 +1,4 @@
-import { filterLongNames, inventoryItemNames, orderItemNames } from './loops.js';
+import { filterLongNames, inventoryItemNames, orderItemNames, couples } from './loops.js';
 
 const myThings = [
     "Harry Potter book",
@@ -21,3 +21,21 @@ console.log(inventoryItemNames(shopInventory));
 
 const order = [4, 1, 2, 3];
 console.log(orderItemNames(shopInventory, order));
+
+const persons = [
+    { name: "Zeus", profession: "God" },
+    { name: "Herakles", profession: "Hero" },
+    { name: "Artemesia", profession: "Arist" },
+    { name: "Herkules", profession: "Hero" },
+    { name: "Florentin", profession: "Artist" },
+    { name: "Venus", profession: "Warrior" },
+    { name: "Hades", profession: "Guard" },
+    { name: "Bacchus", profession: "Wine" },
+    { name: "Athena", profession: "Warrior" },
+    { name: "Hera", profession: "God"},
+    { name: "Artemis", profession: "Hunter" }
+];
+
+const pairs = [["Zeus", "Florentin"], ["Venus", "Athena"], ["Artemis", "Florentin"]];
+
+console.log(couples(persons, pairs))

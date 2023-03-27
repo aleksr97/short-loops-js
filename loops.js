@@ -31,3 +31,26 @@ export function orderItemNames(inventory, orderItemIds) {
 
     return orderedItems;
 }
+
+export function couples(persons, pairNames) {
+    const pairs = [];
+
+    for (const [personAName, personBName] of pairNames) {
+        let personA = null;
+        let personB = null;
+        
+        for (const person of persons) {
+            if (person.name === personAName) {
+                personA = person;
+            }
+
+            if (person.name === personBName) {
+                personB = person;
+            }
+        }
+
+        pairs.push([personA, personB]);
+    }
+
+    return pairs;
+}
