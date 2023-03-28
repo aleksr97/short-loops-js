@@ -54,3 +54,19 @@ export function couples(persons, pairNames) {
 
     return pairs;
 }
+
+export function calculateFollowers(deities) {
+    const followersByDeity = {};
+    
+    for (const deity of deities) {
+        let numberOfFollowers = 0;
+
+        for (const temple of deity.temples) {
+            numberOfFollowers = numberOfFollowers + temple.followers;
+        }
+
+        followersByDeity[deity.name] = numberOfFollowers;
+    }
+
+    return followersByDeity;
+}
