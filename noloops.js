@@ -58,40 +58,102 @@ export function orderItemNames(inventory, orderItemIds) {
 //   ];
 
 export function couples(persons, pairNames) {
-  const pairs = [];
+  // const pairs = [];
 
-  for (const [personAName, personBName] of pairNames) {
-    let personA = null;
-    let personB = null;
+  // for (const [personAName, personBName] of pairNames) {
+  //   let personA = null;
+  //   let personB = null;
 
-    for (const person of persons) {
-      if (person.name === personAName) {
-        personA = person;
-      }
+  //   for (const person of persons) {
+  //     if (person.name === personAName) {
+  //       personA = person;
+  //     }
 
-      if (person.name === personBName) {
-        personB = person;
-      }
-    }
+  //     if (person.name === personBName) {
+  //       personB = person;
+  //     }
+  //   }
 
-    pairs.push([personA, personB]);
-  }
+  //   pairs.push([personA, personB]);
+  // }
 
-  return pairs;
+  // return pairs;
+
+  return pairNames.map(([personAName, personBName]) => [
+    persons.find((person) => person.name === personAName),
+    persons.find((person) => person.name === personBName),
+  ]);
 }
 
+const deities = [
+  {
+    name: "Thor",
+    temples: [
+      { location: "Thorshavn", followers: 122 },
+      { location: "Gotenburg", followers: 73 },
+      { location: "Reykjavik", followers: 200 },
+      { location: "Arcona", followers: 400 },
+    ],
+  },
+  {
+    name: "Odin",
+    temples: [
+      { location: "Thorshavn", followers: 2 },
+      { location: "Odinklam", followers: 150 },
+      { location: "Reykjavik", followers: 2000 },
+    ],
+  },
+  {
+    name: "Freyja",
+    temples: [
+      { location: "Arcona", followers: 200 },
+      { location: "Freyjaborg", followers: 500 },
+      { location: "Reykjavik", followers: 304 },
+    ],
+  },
+  {
+    name: "Frigg",
+    temples: [
+      { location: "Arcona", followers: 100 },
+      { location: "Milan", followers: 50 },
+      { location: "Rostock", followers: 12 },
+    ],
+  },
+];
 export function calculateFollowers(deities) {
-  const followersByDeity = {};
+  // const followersByDeity = {};
 
-  for (const deity of deities) {
-    let numberOfFollowers = 0;
+  // for (const deity of deities) {
+  //   let numberOfFollowers = 0;
 
-    for (const temple of deity.temples) {
-      numberOfFollowers = numberOfFollowers + temple.followers;
-    }
+  //   for (const temple of deity.temples) {
+  //     numberOfFollowers = numberOfFollowers + temple.followers;
+  //   }
 
-    followersByDeity[deity.name] = numberOfFollowers;
-  }
+  //   followersByDeity[deity.name] = numberOfFollowers;
+  // }
 
-  return followersByDeity;
+  // return followersByDeity;
+
+  return deities.reduce((acc, deity) => {
+    acc[deity.name] = deity.temples.reduce(
+      (acc, temple) => acc + temple.followers,
+      0
+    );
+    return acc;
+  }, {});
 }
+
+export function findTheTempelWithMostFollowers(deities) {
+  return deities.reduce((acc, deity) => {
+    acc[deity.name] = deity.temples.reduce((acc, temple) => {
+      if (!acc) {
+        return temple;
+      } else {
+        return acc.followers < temple.followers ? temple : acc;
+      }
+    }).location;
+    return acc;
+  }, {});
+}
+console.log(findTheTempelWithMostFollowers(deities));
